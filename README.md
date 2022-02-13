@@ -1,4 +1,4 @@
-# Write-HostColourString
+# Write-HostColorString
 A simple function for writing multi-color strings to the console.
 Only accepts strings as inputs
 
