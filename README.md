@@ -5,6 +5,8 @@ Only accepts strings as inputs
 Written by Denzil Newman 13th February 2022
 
 
+![write-hostcolorstring](https://user-images.githubusercontent.com/26501604/153769776-cf92e44e-610b-4c6e-8eae-b1a13ac573fb.png)
+
 
 ## Parameters
 $Object - this is the input string, it is named object only for consistency with write-host, however only strings are accepted.
