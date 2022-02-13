@@ -29,9 +29,9 @@
         For example "here is a // slash output, here is a /{ curly brace"
 
     Example usage:
-    Write-HostColourString "Here is some text, {inv}Inverted (black on white) {red}Red on white {inv}Inverted again (now white on red){default} and here is text in the default colors again!" -Foreground white -Background black
-    Write-HostColourString "{green}MORE: " -NoNewLine
-    Write-HostColourString "This is the default when not set {inv}inverted{inv}back {fg:blue,bg:white}and blue on white{default}."        
+    Write-HostColorString "Here is some text, {inv}Inverted (black on white) {red}Red on white {inv}Inverted again (now white on red){default} and here is text in the default colors again!" -Foreground white -Background black
+    Write-HostColorString "{green}MORE: " -NoNewLine
+    Write-HostColorString "This is the default when not set {inv}inverted{inv}back {fg:blue,bg:white}and blue on white{default}."        
 
 #>
 function Write-HostColorString
@@ -126,11 +126,15 @@ function Write-HostColorString
     
                     } else {
                         if ($formatLine -eq "grey") {$formatLine = "gray"}
-                        if (($target -eq "fg") -or ($target -eq "*")) {
-                            $curFG = $formatLine
-                        }
-                        if (($target -eq "bg")) {
-                            $curBG = $formatLine
+                        try {
+                            if (($target -eq "fg") -or ($target -eq "*")) {
+                                $curFG = $formatLine
+                            }
+                            if (($target -eq "bg")) {
+                                $curBG = $formatLine
+                            }
+                        } catch {
+
                         }
                     }
                 }
@@ -146,8 +150,13 @@ Set-Alias -Name Write-HostColourString -Value Write-HostColorString #For us brit
 
 #####################
 
-#Usage
-
 Clear-Host
 
 
+Write-HostColourString "Here is an example:"
+Write-HostColourString "    {darkblue}Write-HostColorString {blue}""here is some /{red}red text"" "
+Write-HostColourString "Output:"
+Write-HostColourString "    here is some {red}red text"
+Write-Host ""
+Write-HostColourString "To output a slash (/), to be safe you should double them ////, because a double slash will only output one slash and a to output a open curly bracket it must be escaped ///{ "
+Write-HostColourString "This message for example would error {red}""** /{more text} **""{def}, but this would not {green}""** ///{more text} **""{def}"
